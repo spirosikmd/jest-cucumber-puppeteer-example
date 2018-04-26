@@ -1,0 +1,21 @@
+{
+  "name": "jest-cucumber-puppeteer-example",
+  "description": "Example project on how to use cucumber and puppeteer with jest for UI testing.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "git@github.com:spirosikmd/jest-cucumber-puppeteer-example.git",
+  "author": "Spyros Ioakeimidis <spyrosikmd@gmail.com>",
+  "devDependencies": {
+    "jest-cucumber": "^1.0.3",
+    "jest-puppeteer": "^2.4.0",
+    "puppeteer": "^1.3.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-puppeteer",
+    "testMatch": ["**/*.steps.js"]
+  }
+}
