@@ -7,7 +7,7 @@ const INPUT_SELECTOR = "section input";
 const TODO_ITEMS_SELECTOR = "ul.todo-list li";
 const todoItemSelector = index => `ul.todo-list li:nth-child(${index})`;
 const todoItemLabelSelector = index => `${todoItemSelector(index)} label`;
-const destroyButtonSelector = index => `${todoItemSelector(index)} button`;
+const deleteButtonSelector = index => `${todoItemSelector(index)} button`;
 
 async function addTodoItem(label) {
   await expect(page).toFill(INPUT_SELECTOR, label);
@@ -15,25 +15,29 @@ async function addTodoItem(label) {
   inputElement.press(ENTER_EVENT);
 }
 
-async function destroyTodoItem(index) {
+async function deleteTodoItem(index) {
   const todoItemElement = await expect(page).toMatchElement(
     todoItemSelector(index)
   );
   await todoItemElement.hover();
-  await expect(page).toClick(destroyButtonSelector(index));
+  await expect(page).toClick(deleteButtonSelector(index));
 }
 
 defineFeature(feature, test => {
+  let todoList;
+
   beforeEach(async () => {
     await page.goto(PAGE);
     await page.evaluate(() => {
       localStorage.clear();
     });
     await page.reload();
+    todoList = [];
   });
 
   const givenIHaveTheTodoList = given => {
     given("I have the todo list", async table => {
+      todoList = table;
       for (let index = 0; index < table.length; index++) {
         await addTodoItem(table[index].Label);
       }
@@ -74,11 +78,12 @@ defineFeature(feature, test => {
     );
   });
 
-  test("Destroy todo item", ({ given, when, then }) => {
+  test("Delete todo item", ({ given, when, then }) => {
     givenIHaveTheTodoList(given);
 
-    when(/^I destroy the (\d+) todo item$/, async index => {
-      await destroyTodoItem(index);
+    when(/^I press the delete button of the todo item "(.*)"$/, async label => {
+      const index = todoList.findIndex(todoItem => todoItem.Label === label);
+      await deleteTodoItem(index + 1);
     });
 
     thenIExpectTheTodoListToHaveNumberOfItems(then);

@@ -9,11 +9,11 @@ Feature: Manage todo list
     Then I expect the todo list to have 2 items
     And I expect to see the todo item "Prepare dinner" in the todo list
 
-  Scenario: Destroy todo item
+  Scenario: Delete todo item
     Given I have the todo list
       | Label             |
       | Clean the kitchen |
       | Prepare dinner    |
-    When I destroy the 1 todo item
+    When I press the delete button of the todo item "Clean the kitchen"
     Then I expect the todo list to have 1 item
     And I expect to not see the todo item "Clean the kitchen" in the todo list
