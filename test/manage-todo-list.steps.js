@@ -12,7 +12,7 @@ const deleteButtonSelector = index => `${todoItemSelector(index)} button`;
 async function addTodoItem(label) {
   await expect(page).toFill(INPUT_SELECTOR, label);
   const inputElement = await expect(page).toMatchElement(INPUT_SELECTOR);
-  inputElement.press(ENTER_EVENT);
+  await inputElement.press(ENTER_EVENT);
 }
 
 async function deleteTodoItem(index) {
