@@ -49,11 +49,17 @@
   version "9.6.23"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.23.tgz#fc429962c1b75f32bd66214a3997f660e8434f0d"
 
-"@types/puppeteer@*", "@types/puppeteer@^1.5.0":
+"@types/puppeteer@*":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.5.1.tgz#8e924528322e184d1cd171f33fd2c94329bf059e"
   dependencies:
     "@types/events" "*"
+    "@types/node" "*"
+
+"@types/puppeteer@^1.12.3":
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.12.3.tgz#1309882d368ed21004dfc4520864fdafcf126277"
+  dependencies:
     "@types/node" "*"
 
 abab@^1.0.4:
