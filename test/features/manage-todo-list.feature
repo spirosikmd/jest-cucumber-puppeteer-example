@@ -17,3 +17,4 @@ Feature: Manage todo list
     When I press the delete button of the todo item "Clean the kitchen"
     Then I expect the todo list to have 1 item
     And I expect to not see the todo item "Clean the kitchen" in the todo list
+    Then I added this change
